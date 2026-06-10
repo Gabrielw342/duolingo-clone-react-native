@@ -1,27 +1,47 @@
-import { View, Text, TextInput, TouchableOpacity  } from "react-native";
+import { useState } from "react";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { styles } from "../styles/LoginStyles";
 
-export default function LoginScreen() {
+export default function LoginScreen({ setTela }: any) {
+
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+
+  function validarLogin() {
+    if (email === "gabriel" && senha === "1234") {
+      setTela("loading");
+    } else {
+      alert("Usuário ou senha inválidos!");
+    }
+  }
+
   return (
     <View style={styles.container}>
   <Text style={styles.title}>
     Insira os seus dados
   </Text>
 
-  <TextInput
-    style={styles.inputContainer}
-    placeholder="E-mail, telefone ou nome de usuário"
-    placeholderTextColor="#6f8490"
-  />
+ <TextInput
+  style={styles.inputContainer}
+  placeholder="E-mail, telefone ou nome de usuário"
+  placeholderTextColor="#6f8490"
+  value={email}
+  onChangeText={setEmail}
+/>
 
   <TextInput
-    style={styles.inputContainer}
-    placeholder="Senha"
-    placeholderTextColor="#6f8490"
-    secureTextEntry
-  />
+  style={styles.inputContainer}
+  placeholder="Senha"
+  placeholderTextColor="#6f8490"
+  secureTextEntry
+  value={senha}
+  onChangeText={setSenha}
+/>
 
-  <TouchableOpacity style={styles.button}>
+  <TouchableOpacity
+  style={styles.button}
+  onPress={validarLogin}
+>
   <Text style={styles.buttonText}>
     ENTRAR
   </Text>
