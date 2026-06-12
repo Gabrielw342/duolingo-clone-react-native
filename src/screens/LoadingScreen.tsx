@@ -1,7 +1,17 @@
+import { useEffect } from "react";
 import { View, Text, Image } from "react-native";
 import { styles } from "../styles/LoadingStyles";
 
-export default function LoadingScreen() {
+export default function LoadingScreen({ setTela }: any) {
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTela("main");
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <View style={styles.container}>
       <Image
